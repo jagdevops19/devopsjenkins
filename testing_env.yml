@@ -1,0 +1,16 @@
+--- # example on condition
+
+- hosts: webservers
+  remote_user: root
+  become: yes
+  
+  tasks:
+
+    - name: install httpd servers for testing the playbook
+      yum: name=httpd state=installed
+    
+    - name: Creating index.html file
+      copy: src=index.html dest=/var/www/html    
+
+    - name: start httpd service 
+      service: name=httpd state=started 
