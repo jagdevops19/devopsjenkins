@@ -1,0 +1,20 @@
+piVersion: apps/v1
+kind: Deployment
+metadata:
+  name: addressbook-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: addressbook-pods
+  template:
+    metadata:
+      labels:
+        app: addressbook-pods
+    spec:
+      containers:
+      - name: addressbook-container
+        image: jagdevops/addressbook:latest
+        ports:
+        - containerPort: 8080
+
