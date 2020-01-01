@@ -1,0 +1,20 @@
+---
+- hosts: webservers
+  become: true
+  become_user: root
+  tasks:
+  - name: copy a file from source to taragetted webserver/s
+    copy: src=/root/myfile.txt dest=/root/myfile.txt
+  - name: Add the user johnd with a specific uid and a primary group of admin
+    user: 
+      name: johnd 
+      password: password 
+      comment: John Doe 
+      uid: 1040 
+      groups: 
+       - docker
+     
+      state: present
+      shell: /bin/bash
+      createhome: yes
+      home: /home/fideloper
